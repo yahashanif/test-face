@@ -44,20 +44,20 @@ class FaceNetService {
   Future loadModel() async {
     try {
       // String? output=await Tflite.loadModel(model: "assets/mobilefacenet.tflite");
-      // final gpuDelegateV2 = tflite.GpuDelegateV2(
-      //     options: tflite.GpuDelegateOptionsV2(
-      //         isPrecisionLossAllowed: false,
-      //         inferencePreference:
-      //             tflite.TfLiteGpuInferenceUsage.fastSingleAnswer,
-      //         inferencePriority1: tflite.TfLiteGpuInferencePriority.minLatency,
-      //         inferencePriority2: tflite.TfLiteGpuInferencePriority.auto,
-      //         inferencePriority3: tflite.TfLiteGpuInferencePriority.auto));
+      final gpuDelegateV2 = tflite.GpuDelegateV2(
+          options: tflite.GpuDelegateOptionsV2(
+              isPrecisionLossAllowed: false,
+              inferencePreference:
+                  tflite.TfLiteGpuInferenceUsage.fastSingleAnswer,
+              inferencePriority1: tflite.TfLiteGpuInferencePriority.minLatency,
+              inferencePriority2: tflite.TfLiteGpuInferencePriority.auto,
+              inferencePriority3: tflite.TfLiteGpuInferencePriority.auto));
 
-      // var interpreterOptions = tflite.InterpreterOptions()
-      //   ..addDelegate(gpuDelegateV2);
-      _interpreter = await tflite.Interpreter.fromAsset('mobilefacenet.tflite');
-      // _interpreter = await tflite.Interpreter.fromAsset('mobilefacenet.tflite',
-      //     options: interpreterOptions);
+      var interpreterOptions = tflite.InterpreterOptions()
+        ..addDelegate(gpuDelegateV2);
+      // _interpreter = await tflite.Interpreter.fromAsset('mobilefacenet.tflite');
+      _interpreter = await tflite.Interpreter.fromAsset('mobilefacenet.tflite',
+          options: interpreterOptions);
       print('model loaded successfully');
       print('model loaded successfully');
       print('load model1===model loaded successfully');
